@@ -1,0 +1,90 @@
+Card(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(
+                      Icons.looks_one,
+                      size: 40.0,
+                      color: Colors.pinkAccent,
+                    ),
+                    trailing: Image.network(
+                      "https://images-na.ssl-images-amazon.com/images/I/51sl-z1S1dL._SL1500_.jpg", //TODO: Get it from firebase
+                      scale: 17.0,
+                    ),
+                    title: Text(
+                      "Samsung Galaxy S10 (White, 8GB RAM, 512GB Storage)",
+                      style: TextStyle(
+                          inherit: false,
+                          fontFamily: 'Poppins',
+                          color: Colors.black,
+                          fontSize: 20.0),
+                    ),
+                    subtitle: RichText(
+                      textAlign: TextAlign.start,
+                      //textDirection: TextDirection.ltr,
+                      text: TextSpan(
+                        text: '\n',
+                        style: TextStyle(
+                            fontStyle: FontStyle.normal, color: Colors.pink),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Price:\t\t\t',
+                              style: TextStyle(
+                                  inherit: false,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.5)),
+                          TextSpan(
+                              text: '84,000\n', //TODO: get it from firebase
+                              style: TextStyle(
+                                  inherit: false,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 16.5)),
+                          TextSpan(
+                              text: 'Rating:\t',
+                              style: TextStyle(
+                                  inherit: false,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.5)),
+                          TextSpan(
+                              text:
+                                  '4.5/5 (150 Reviews)\n', //TODO: get it from firebase
+                              style: TextStyle(
+                                  inherit: false,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 16.5)),
+                          TextSpan(
+                              text: 'Offer Details ',
+                              style: TextStyle(
+                                  inherit: false,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.5)),
+                          TextSpan(
+                              text:
+                                  '10% Off + Additional 1000 Rs of on HDFC Credit Cards\n', //TODO: get it from firebase
+                              style: TextStyle(
+                                  inherit: false,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 16.5)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  ButtonTheme.bar(
+                    // make buttons use the appropriate styles for cards
+                    child: ButtonBar(
+                      children: <Widget>[
+                        FlatButton(
+                          child: const Icon(Icons.shopping_basket),
+                          onPressed: () {/* ... */},
+                        ),
+                        FlatButton(
+                          child: const Icon(Icons.share),
+                          onPressed: () {/* ... */},
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )

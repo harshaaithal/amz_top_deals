@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "610094855579",
+    "firebase_url": "https://tdlinkstore.firebaseio.com",
+    "project_id": "tdlinkstore",
+    "storage_bucket": "tdlinkstore.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610094855579:android:afb4a87619a22200",
+        "android_client_info": {
+          "package_name": "com.ait.dev.amz_top_deals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610094855579-3car7er7fgbn3b2epamhimo4cml15t9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKKGOzt34OorOafmE6pIkKOXXTQ00J6yQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610094855579:android:61d4fc5c50e3951b",
+        "android_client_info": {
+          "package_name": "dev.harsha.dealstoday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610094855579-32fvaj6is2hgubst8462t9vqli56irfk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.harsha.dealstoday",
+            "certificate_hash": "348601ff7fd352bb2b8aa208d40bba3585b81ec3"
+          }
+        },
+        {
+          "client_id": "610094855579-3car7er7fgbn3b2epamhimo4cml15t9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKKGOzt34OorOafmE6pIkKOXXTQ00J6yQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610094855579-3car7er7fgbn3b2epamhimo4cml15t9q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

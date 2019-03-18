@@ -1,0 +1,45 @@
+name: amz_top_deals
+description: A new Flutter application.
+version: 1.0.0+1
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.2
+  intl: ^0.15.7
+  cloud_firestore: ^0.9.5+2
+  url_launcher: ^5.0.1
+  share: ^0.6.0+1
+  firebase_messaging: ^4.0.0+1
+  firebase_admob: ^0.8.0+3
+  font_awesome_flutter: ^8.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-Thin.ttf
+          weight: 200
+    - family: ConcertOne
+      fonts:
+        - asset: assets/fonts/Concert-One-regular.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-600.ttf
+          weight: 600
+
