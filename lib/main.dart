@@ -46,26 +46,38 @@ class MainPageState extends State<MainPage> {
       'lifestyle',
       'cricket',
       'sports',
-      'television'
+      'television',
+      'Treatment ',
+      'Software',
+      'Marriage',
+      'Classes',
+      'Recovery',
+
     ],
-    contentUrl: 'https://flutter.io',
+    //contentUrl: 'https://flutter.io',
     childDirected: true,
     testDevices: <String>[], // Android emulators are considered test devices
   );
 
-  BannerAd myBanner = BannerAd(
-    adUnitId: "ca-app-pub-2643039652331613/9544265370",
-    size: AdSize.banner,
-    targetingInfo: targetingInfo,
-    listener: (MobileAdEvent event) {
-      if (event == MobileAdEvent.loaded) {
-        _adShown = true;
-      } else {
-        _adShown = false;
-      }
-      print("BannerAd event is $event $_adShown");
-    },
-  );
+  BannerAd myBanner;
+
+  BannerAd createBannerAd() {
+    return new BannerAd(
+      adUnitId: "ca-app-pub-2643039652331613/9544265370",
+      targetingInfo: targetingInfo,
+      size: AdSize.banner,
+      listener: (MobileAdEvent event) {
+        if (event == MobileAdEvent.loaded) {
+          _adShown = true;
+          setState(() {});
+        } else if (event == MobileAdEvent.failedToLoad) {
+          _adShown = false;
+          setState(() {});
+        }
+      },
+    );
+  }
+
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   var dtNow = new DateTime.now();
 
@@ -76,18 +88,13 @@ class MainPageState extends State<MainPage> {
   }
 
   void initState() {
-    _adShown=true;
+    _adShown = false;
     FirebaseAdMob.instance
         .initialize(appId: "ca-app-pub-2643039652331613~4945355443");
-    myBanner
-      // typically this happens well before the ad is shown
+    myBanner = createBannerAd()
       ..load()
-      ..show(
-        // Positions the banner ad 60 pixels from the bottom of the screen
-        anchorOffset: 0.0,
-        // Banner Position
-        anchorType: AnchorType.bottom,
-      );
+      ..show(anchorOffset: 0.0, anchorType: AnchorType.bottom);
+
     super.initState();
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
@@ -122,7 +129,8 @@ class MainPageState extends State<MainPage> {
                     subtitle: Text("1.1"),
                     trailing: FlatButton(
                       onPressed: () {
-                        _launchURL("https://aithal-dev.webnode.in/app-listing/");
+                        _launchURL(
+                            "https://aithal-dev.webnode.in/app-listing/");
                       },
                       child: Text("Release Notes"),
                       color: Colors.cyan,
@@ -167,6 +175,7 @@ class MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("Adshow status $_adShown");
     var formatter = new DateFormat('dd-MM-yyyy hh:mm:ss');
     var dtFrmt = formatter.format(dtNow);
 
@@ -256,13 +265,14 @@ class MainPageState extends State<MainPage> {
           ],
         ),
       ),
-      persistentFooterButtons: _adShown?<Widget>[
-        new Container(
-          height: 40.0,
-        )
-      ]:null,
+      persistentFooterButtons: _adShown
+          ? <Widget>[
+              new Container(
+                height: 40.0,
+              )
+            ]
+          : null,
     );
-    _refreshData();
   }
 
   Widget cardsWidget(BuildContext context, DocumentSnapshot data, int lev) {
