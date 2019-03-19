@@ -12,12 +12,7 @@ import 'package:firebase_admob/firebase_admob.dart';
 
 void main() => runApp(MyApp());
 
-
-
 class MyApp extends StatelessWidget {
-
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,27 +31,39 @@ _launchURL(url) async {
   }
 }
 
+bool _adShown;
+
 class MainPage extends StatefulWidget {
   MainPageState createState() => MainPageState();
 }
 
 class MainPageState extends State<MainPage> {
   static MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    keywords: <String>['flutterio', 'beautiful apps'],
+    keywords: <String>[
+      'flutterio',
+      'beautiful apps',
+      'shopping',
+      'lifestyle',
+      'cricket',
+      'sports',
+      'television'
+    ],
     contentUrl: 'https://flutter.io',
     childDirected: true,
     testDevices: <String>[], // Android emulators are considered test devices
   );
 
   BannerAd myBanner = BannerAd(
-    // Replace the testAdUnitId with an ad unit id from the AdMob dash.
-    // https://developers.google.com/admob/android/test-ads
-    // https://developers.google.com/admob/ios/test-ads
     adUnitId: "ca-app-pub-2643039652331613/9544265370",
-    size: AdSize.smartBanner,
+    size: AdSize.banner,
     targetingInfo: targetingInfo,
     listener: (MobileAdEvent event) {
-      print("BannerAd event is $event");
+      if (event == MobileAdEvent.loaded) {
+        _adShown = true;
+      } else {
+        _adShown = false;
+      }
+      print("BannerAd event is $event $_adShown");
     },
   );
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
@@ -69,9 +76,11 @@ class MainPageState extends State<MainPage> {
   }
 
   void initState() {
-    FirebaseAdMob.instance.initialize(appId: "ca-app-pub-2643039652331613~4945355443");
+    _adShown=true;
+    FirebaseAdMob.instance
+        .initialize(appId: "ca-app-pub-2643039652331613~4945355443");
     myBanner
-    // typically this happens well before the ad is shown
+      // typically this happens well before the ad is shown
       ..load()
       ..show(
         // Positions the banner ad 60 pixels from the bottom of the screen
@@ -91,7 +100,7 @@ class MainPageState extends State<MainPage> {
   _displaySnackBar(BuildContext context, String msg) {
     final snackBar = SnackBar(
       content: Text(msg),
-      backgroundColor: Colors.redAccent,
+      backgroundColor: Colors.blueAccent,
     );
     Scaffold.of(context).showSnackBar(snackBar);
   }
@@ -110,10 +119,10 @@ class MainPageState extends State<MainPage> {
                   ListTile(
                     leading: Icon(Icons.info),
                     title: Text("Version"),
-                    subtitle: Text("1.0"),
+                    subtitle: Text("1.1"),
                     trailing: FlatButton(
                       onPressed: () {
-                        _launchURL("https://aithal-dev.webnode.in/");
+                        _launchURL("https://aithal-dev.webnode.in/app-listing/");
                       },
                       child: Text("Release Notes"),
                       color: Colors.cyan,
@@ -247,6 +256,11 @@ class MainPageState extends State<MainPage> {
           ],
         ),
       ),
+      persistentFooterButtons: _adShown?<Widget>[
+        new Container(
+          height: 40.0,
+        )
+      ]:null,
     );
     _refreshData();
   }
